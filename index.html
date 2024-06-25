@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Lucro da Escola Digital</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Calculadora de Lucro da Escola Digital</h1>
+    <label for="ticket-medio">Ticket Médio (R$):</label>
+    <input type="number" id="ticket-medio" placeholder="Digite o valor do ticket médio">
+
+    <label for="tamanho-turma">Tamanho da Turma:</label>
+    <input type="number" id="tamanho-turma" placeholder="Digite o tamanho da turma">
+
+    <label for="num-turmas">Número de Turmas:</label>
+    <input type="number" id="num-turmas" placeholder="Digite o número de turmas">
+
+    <label for="comissao">Comissão da Escola (%):</label>
+    <input type="number" id="comissao" placeholder="Digite a comissão da escola">
+
+    <label for="custo-fixo">Custo Fixo (R$):</label>
+    <input type="number" id="custo-fixo" placeholder="Digite o custo fixo">
+
+    <button onclick="calcularLucro()">Calcular Lucro</button>
+
+    <div class="result" id="resultado"></div>
+
+    <script>
+        function calcularLucro() {
+            // Obter valores dos campos de entrada
+            const ticketMedio = parseFloat(document.getElementById('ticket-medio').value);
+            const tamanhoTurma = parseInt(document.getElementById('tamanho-turma').value);
+            const numTurmas = parseInt(document.getElementById('num-turmas').value);
+            const comissao = parseFloat(document.getElementById('comissao').value) / 100;
+            const custoFixo = parseFloat(document.getElementById('custo-fixo').value);
+
+            // Calcular receita total
+            const receitaTotal = ticketMedio * tamanhoTurma * numTurmas;
+
+            // Calcular lucro bruto
+            const lucroBruto = receitaTotal - custoFixo;
+
+            // Calcular lucro líquido da escola
+            const lucroLiquido = lucroBruto * comissao;
+
+            // Exibir resultado
+            document.getElementById('resultado').innerText = `Lucro da Escola: R$ ${lucroLiquido.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>
